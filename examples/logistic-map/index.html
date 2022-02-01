@@ -1,0 +1,819 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
+    
+    
+      
+        <title>Logistic map - EDM Stata Package</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2b4465f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Alegreya Sans";--md-code-font:""}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/sliders.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/fix-mathjax-font-subscript-bug.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#setting-up-the-synthetic-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EDM Stata Package" class="md-header__button md-logo" aria-label="EDM Stata Package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EDM Stata Package
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Logistic map
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EDM Stata Package" class="md-nav__button md-logo" aria-label="EDM Stata Package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"/></svg>
+
+    </a>
+    EDM Stata Package
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Logistic map
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Logistic map
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-the-synthetic-data" class="md-nav__link">
+    Setting up the synthetic data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-the-optimal-embedding-dimension" class="md-nav__link">
+    Find the optimal embedding dimension
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assess-the-level-of-non-linearity-in-the-time-series" class="md-nav__link">
+    Assess the level of non-linearity in the time series
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergent-cross-mapping" class="md-nav__link">
+    Convergent cross-mapping
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chicago/" class="md-nav__link">
+        Chicago crime/temperature
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          How does it work?
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="How does it work?" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          How does it work?
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../time-delayed-embedding/" class="md-nav__link">
+        Time-delayed embedding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explore/" class="md-nav__link">
+        The explore subcommand
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xmap/" class="md-nav__link">
+        The xmap subcommand
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adding-to-manifold/" class="md-nav__link">
+        Adding variables to manifold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../missing-data/" class="md-nav__link">
+        Missing data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coprediction/" class="md-nav__link">
+        Coprediction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gpu/" class="md-nav__link">
+        GPU Acceleration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automated-workflows/" class="md-nav__link">
+        Automated workflows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        Stata Help File
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setting-up-the-synthetic-data" class="md-nav__link">
+    Setting up the synthetic data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-the-optimal-embedding-dimension" class="md-nav__link">
+    Find the optimal embedding dimension
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assess-the-level-of-non-linearity-in-the-time-series" class="md-nav__link">
+    Assess the level of non-linearity in the time series
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergent-cross-mapping" class="md-nav__link">
+    Convergent cross-mapping
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+  <h1>Logistic map</h1>
+
+<h2 id="setting-up-the-synthetic-data">Setting up the synthetic data</h2>
+<p>First, we tell Stata that we're working with time series using <code>tsset</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.<span class="k"> set</span> obs <span class="m">500</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Number of observations (_N) was <span class="m">0</span>, now <span class="m">500</span>.
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>. 
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>.<span class="k"> gen</span> t = _n
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>.<span class="k"> tsset</span> t
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>Time variable: t, <span class="m">1</span> to <span class="m">500</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        Delta: <span class="m">1</span> unit
+</code></pre></div>
+<p>This is important, as the <code>edm</code> relies on the user to specify which variable corresponds to 'time'.</p>
+<p>Next, we can generate the synthetic data which we will use in the causal analysis.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.<span class="k"> gen</span> x = <span class="m">0.2</span><span class="k"> if</span> _n<span class="o">==</span><span class="m">1</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>(<span class="m">499</span> missing values generated)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>.<span class="k"> gen</span> y = <span class="m">0.3</span><span class="k"> if</span> _n<span class="o">==</span><span class="m">1</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>(<span class="m">499</span> missing values generated)
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>.<span class="k"> gen</span> z = <span class="m">0.1</span><span class="k"> if</span> _n<span class="o">==</span><span class="m">1</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>(<span class="m">499</span> missing values generated)
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>. 
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>.<span class="k"> local</span> r_x <span class="m">3.79</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>.<span class="k"> local</span> r_y <span class="m">3.79</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>.<span class="k"> local</span> r_z <span class="m">3.77</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>.<span class="k"> local</span> beta_xy = <span class="m">0.0</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>.<span class="k"> local</span> beta_yx=<span class="m">0.2</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>.<span class="k"> local</span> beta_zy = <span class="m">0.5</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>.<span class="k"> local</span> tau = <span class="m">1</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>.<span class="k"> drawnorm</span> u1 u2
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>. 
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>.<span class="k"> forvalues</span> i=<span class="m">2</span><span class="o">/</span><span class="nv">`=_N&#39;</span> {
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>  <span class="m">2</span>.    <span class="k"> qui replace</span> x=l<span class="m">.</span>x <span class="o">*</span>(<span class="nv">`r_x&#39;</span> <span class="o">*</span>(<span class="m">1</span><span class="o">-</span>l<span class="m">.</span>x)<span class="o">-</span><span class="nv">`beta_xy&#39;</span><span class="o">*</span>l<span class="m">.</span>y)<span class="k"> in</span> <span class="nv">`i&#39;</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>  <span class="m">3</span>.    <span class="k"> qui replace</span> y=l<span class="m">.</span>y <span class="o">*</span>(<span class="nv">`r_y&#39;</span> <span class="o">*</span>(<span class="m">1</span><span class="o">-</span>l<span class="m">.</span>y)<span class="o">-</span><span class="nv">`beta_yx&#39;</span><span class="o">*</span>l<span class="nv">`tau&#39;</span>.x)<span class="k"> in</span> <span class="nv">`i&#39;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>  <span class="m">4</span>.    <span class="k"> qui replace</span> z=l<span class="m">.</span>z <span class="o">*</span>(<span class="nv">`r_z&#39;</span> <span class="o">*</span>(<span class="m">1</span><span class="o">-</span>l<span class="m">.</span>z)<span class="o">-</span><span class="nv">`beta_zy&#39;</span><span class="o">*</span>l<span class="nv">`tau&#39;</span>.y)<span class="k"> in</span> <span class="nv">`i&#39;</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>  <span class="m">5</span>. }
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>.<span class="k"> keep in</span> <span class="m">300</span><span class="o">/</span><span class="m">450</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>(<span class="m">349</span> observations deleted)
+</code></pre></div>
+<p>Now we have two time series, <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span>.
+For example, the first ten joint observations look like: </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.<span class="k"> list</span> x y<span class="k"> if</span> _n <span class="o">&lt;=</span> <span class="m">10</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>     <span class="o">+---------------------+</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>     |        x          y |
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>     |<span class="o">---------------------</span>|
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  <span class="m">1</span>. | .<span class="m">5353563</span>   .<span class="m">3485506</span> |
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  <span class="m">2</span>. | .<span class="m">9427623</span>   .<span class="m">8232493</span> |
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>  <span class="m">3</span>. | .<span class="m">2045144</span>   .<span class="m">3962567</span> |
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  <span class="m">4</span>. | .<span class="m">6165885</span>   .<span class="m">8905014</span> |
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  <span class="m">5</span>. |  .<span class="m">895983</span>   .<span class="m">2597431</span> |
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>     |<span class="o">---------------------</span>|
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  <span class="m">6</span>. | .<span class="m">3532184</span>   .<span class="m">6821833</span> |
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>  <span class="m">7</span>. | .<span class="m">8658451</span>    .<span class="m">773515</span> |
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>  <span class="m">8</span>. | .<span class="m">4402364</span>   .<span class="m">5300195</span> |
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>  <span class="m">9</span>. | .<span class="m">9339633</span>   .<span class="m">8974178</span> |
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a> <span class="m">10</span>. | .<span class="m">2337515</span>    .<span class="m">181273</span> |
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>     <span class="o">+---------------------+</span>
+</code></pre></div>
+<p>Plotting the two time series together looks like:</p>
+<p><img alt="Plot of the logistic map as two time series" src="logistic-map.svg" /></p>
+<h2 id="find-the-optimal-embedding-dimension">Find the optimal embedding dimension</h2>
+<p>Now we use <code>edm explore</code> to find the optimal embedding dimension of the <span class="arithmatex">\(y\)</span> time series.
+We check the values of <span class="arithmatex">\(E = 2, \dots 10\)</span>, and use <code>rep(50)</code> to take 50 random subsets of the data to use for training (leaving the other random half for prediction). </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>. edm explore y,<span class="k"> e</span>(<span class="m">2</span><span class="o">/</span><span class="m">10</span>) rep(<span class="m">50</span>)
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>Replication progress (<span class="m">50</span><span class="k"> in total</span>)
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Percent complete: <span class="m">0</span>...<span class="m">10</span>...<span class="m">20</span>...<span class="m">30</span>...<span class="m">40</span>...<span class="m">50</span>...<span class="m">60</span>...<span class="m">70</span>...<span class="m">80</span>...<span class="m">90</span>...
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Empirical Dynamic Modelling
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Univariate mapping with y and its lag values
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="o">----------------------------------------------------------------------</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                      <span class="o">---------</span> rho <span class="o">---------</span>  <span class="o">---------</span> MAE <span class="o">---------</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a> Actual E    theta         Mean    Std. Dev.         Mean    Std. Dev.
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="o">----------------------------------------------------------------------</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="m">2</span>        <span class="m">1</span>       .<span class="m">98104</span>     .<span class="m">0056417</span>       .<span class="m">03127</span>     .<span class="m">0044271</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="m">3</span>        <span class="m">1</span>       .<span class="m">96996</span>      .<span class="m">012497</span>        .<span class="m">0393</span>     .<span class="m">0054778</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="m">4</span>        <span class="m">1</span>       .<span class="m">95131</span>      .<span class="m">016597</span>      .<span class="m">049013</span>     .<span class="m">0060371</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="m">5</span>        <span class="m">1</span>       .<span class="m">92509</span>       .<span class="m">02697</span>      .<span class="m">059667</span>     .<span class="m">0082334</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="m">6</span>        <span class="m">1</span>       .<span class="m">89149</span>      .<span class="m">039457</span>       .<span class="m">07092</span>     .<span class="m">0097508</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="m">7</span>        <span class="m">1</span>       .<span class="m">83573</span>       .<span class="m">04969</span>      .<span class="m">085179</span>      .<span class="m">010616</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="m">8</span>        <span class="m">1</span>       .<span class="m">78633</span>      .<span class="m">058107</span>      .<span class="m">098735</span>      .<span class="m">011921</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="m">9</span>        <span class="m">1</span>       .<span class="m">74695</span>      .<span class="m">066014</span>       .<span class="m">10839</span>      .<span class="m">012128</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>       <span class="m">10</span>        <span class="m">1</span>       .<span class="m">71795</span>      .<span class="m">071137</span>       .<span class="m">11598</span>      .<span class="m">011756</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="o">----------------------------------------------------------------------</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>Note: Results from <span class="m">50</span> runs
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>Note: Number of neighbours (k) is<span class="k"> set</span> to between <span class="m">3</span> and <span class="m">11</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>Note: Random <span class="m">50</span><span class="o">/</span><span class="m">50</span><span class="k"> split for</span> training and validation data
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>.<span class="k"> mat</span> r=<span class="k"> e</span>(explore_result)
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>.<span class="k"> svmat</span> r, names(col)
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>number of observations will be reset to <span class="m">450</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>Press any key to<span class="k"> continue</span>, or Break to abort
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>Number of observations (_N) was <span class="m">151</span>, now <span class="m">450</span>.
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>.<span class="k"> twoway</span> (scatter c3 c1)(lpoly c3 c1),xtitle(<span class="s">&quot;E&quot;</span>) ytitle(<span class="s">&quot;{it:{&amp;rho}}&quot;</span>) legend(
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="o">&gt;</span><span class="k"> order</span>(<span class="m">1</span> <span class="s">&quot;{it:{&amp;rho}}&quot;</span> <span class="m">2</span> <span class="s">&quot;local polynomial smoothing&quot;</span>) col(<span class="m">1</span>) position(<span class="m">8</span>) ring
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="o">&gt;</span> (<span class="m">0</span>))
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>.<span class="k"> drop</span> c<span class="o">*</span>
+</code></pre></div>
+<p>From the <code>rho</code> column we can see the prediction accuracy decreasing as <span class="arithmatex">\(E\)</span> increases, so <span class="arithmatex">\(E=2\)</span> is our best choice for the embedding dimension.
+Plotting the same results:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>.<span class="k"> mat</span> r=<span class="k"> e</span>(explore_result)
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>.<span class="k"> svmat</span> r, names(col)
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>.<span class="k"> twoway</span> (scatter c3 c1)(lpoly c3 c1),xtitle(<span class="s">&quot;E&quot;</span>) ytitle(<span class="s">&quot;{it:{&amp;rho}}&quot;</span>) legend(
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="o">&gt;</span><span class="k"> order</span>(<span class="m">1</span> <span class="s">&quot;{it:{&amp;rho}}&quot;</span> <span class="m">2</span> <span class="s">&quot;local polynomial smoothing&quot;</span>) col(<span class="m">1</span>) position(<span class="m">8</span>) ring
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="o">&gt;</span> (<span class="m">0</span>))
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>.<span class="k"> drop</span> c<span class="o">*</span>
+</code></pre></div>
+<img alt="Plot of prediction accuracy rho for different embedding dimensions E" src="rho-E.svg" /></p>
+<h2 id="assess-the-level-of-non-linearity-in-the-time-series">Assess the level of non-linearity in the time series</h2>
+<p>Another use of <code>edm explore</code> is to check if the observed time series exhibits high levels of non-linearity.
+Here, we use the S-map algorithm and vary <span class="arithmatex">\(\theta = 0, \dots, 5\)</span>, using all of the training set as neighbours (i.e. <code>k(-1)</code>).</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>. edm explore y,<span class="k"> e</span>(<span class="m">2</span>) algorithm(smap) theta(<span class="m">0</span>(<span class="m">1</span>)<span class="m">5</span>) k(<span class="o">-</span><span class="m">1</span>) 
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>Percent complete: <span class="m">0</span>...<span class="m">10</span>...<span class="m">20</span>...<span class="m">30</span>...<span class="m">40</span>...<span class="m">50</span>...<span class="m">60</span>...<span class="m">70</span>...<span class="m">80</span>...<span class="m">90</span>...
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Empirical Dynamic Modelling
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>Univariate mapping with y and its lag values
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="o">--------------------------------------------------------------------</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>          Actual E           theta             rho             MAE
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="o">--------------------------------------------------------------------</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>                 <span class="m">2</span>               <span class="m">0</span>           .<span class="m">7276</span>          .<span class="m">12482</span> 
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>                 <span class="m">2</span>               <span class="m">1</span>           .<span class="m">9594</span>         .<span class="m">057205</span> 
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>                 <span class="m">2</span>               <span class="m">2</span>          .<span class="m">98107</span>         .<span class="m">035173</span> 
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>                 <span class="m">2</span>               <span class="m">3</span>          .<span class="m">98825</span>         .<span class="m">027744</span> 
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>                 <span class="m">2</span>               <span class="m">4</span>          .<span class="m">99162</span>         .<span class="m">023781</span> 
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>                 <span class="m">2</span>               <span class="m">5</span>            .<span class="m">993</span>         .<span class="m">021781</span> 
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="o">--------------------------------------------------------------------</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>Note: Number of neighbours (k) is<span class="k"> set</span> to <span class="m">75</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>Note: <span class="m">50</span><span class="o">/</span><span class="m">50</span><span class="k"> split for</span> training and validation data
+</code></pre></div>
+<p>Showing the same <code>rho</code>/<span class="arithmatex">\(\rho\)</span> prediction accuracies as a plot:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>.<span class="k"> mat</span> r =<span class="k"> e</span>(explore_result)
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>.<span class="k"> svmat</span> r, names(col)
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>number of observations will be reset to <span class="m">501</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Press any key to<span class="k"> continue</span>, or Break to abort
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Number of observations (_N) was <span class="m">450</span>, now <span class="m">501</span>.
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>.<span class="k"> twoway</span> (line c3 c2) , legend(order(<span class="m">1</span> <span class="s">&quot;{it:{&amp;rho}}&quot;</span>) position(<span class="m">5</span>) ring(<span class="m">0</span>)) xtit
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="o">&gt;</span> le(<span class="s">&quot;{it:{&amp;theta}}&quot;</span>) ytitle(<span class="s">&quot;{it:{&amp;rho}}&quot;</span>) title(<span class="s">&quot;{it:{&amp;rho}}-{it:{&amp;theta}} of</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="o">&gt;</span>  variable y<span class="s">&quot;)</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>.<span class="k"> drop</span> c<span class="o">*</span>
+</code></pre></div>
+<img alt="Plot of prediction accuracy rho for different theta values" src="rho-theta.svg" /></p>
+<p>As the accuracy climbs as larger for <span class="arithmatex">\(\theta &gt; 0\)</span> compared to <span class="arithmatex">\(\theta = 0\)</span>, we deduce that the time series is likely the output of a non-linear system.
+This is important, as the theory underlying EDM is specific to non-linear systems.</p>
+<h2 id="convergent-cross-mapping">Convergent cross-mapping</h2>
+<p>Finally, now we are satisfied that the time series are non-linear and we have selected <span class="arithmatex">\(E=2\)</span> as the embedding dimension, we can run <em>convergent cross-mappping</em>.
+If the prediction accuracy increases as the library size <span class="arithmatex">\(L\)</span> increases, then we can say this is evidence of a causal link in that direction. </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>.<span class="k"> qui</span> edm xmap x y,<span class="k"> e</span>(<span class="m">2</span>) rep(<span class="m">10</span>) library(<span class="m">5</span><span class="o">/</span><span class="m">150</span>)
+</code></pre></div>
+<p>Using these predictions, we can plot the accuracy against the library size: </p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>.<span class="k"> mat</span> c1 =<span class="k"> e</span>(xmap_1)
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>.<span class="k"> mat</span> c2 =<span class="k"> e</span>(xmap_2)
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>.<span class="k"> svmat</span> c1, names(xy)
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>number of observations will be reset to <span class="m">1460</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Press any key to<span class="k"> continue</span>, or Break to abort
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Number of observations (_N) was <span class="m">501</span>, now <span class="m">1</span>,<span class="m">460</span>.
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>.<span class="k"> svmat</span> c2, names(yx)
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>.<span class="k"> label</span> variable xy3 <span class="s">&quot;y|M(x)&quot;</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>.<span class="k"> label</span> variable yx3 <span class="s">&quot;x|M(y)&quot;</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>.<span class="k"> twoway</span> (scatter xy3 xy2, mfcolor(%<span class="m">30</span>) mlcolor(%<span class="m">30</span>)) <span class="cs">///</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="o">&gt;</span>     (scatter yx3 yx2, mfcolor(%<span class="m">30</span>) mlcolor(%<span class="m">30</span>)) <span class="cs">///</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="o">&gt;</span>     (lpoly xy3 xy2)(lpoly yx3 yx2), xtitle(L) ytitle(<span class="s">&quot;{it:{&amp;rho}}&quot;</span>) legend(co
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="o">&gt;</span><span class="k"> l</span>(<span class="m">2</span>))
+</code></pre></div>
+<img alt="Convergent cross-mapping plot of accuracy against library size" src="rho-L.svg" /></p>
+<p>As both plots of the accuracy are significantly increasing as <span class="arithmatex">\(L\)</span> increases, then we can say there is evidence of both <span class="arithmatex">\(x \to y\)</span> and <span class="arithmatex">\(y \to x\)</span> causal links.
+The direction which increases the most is the <span class="arithmatex">\(x \mid M(y)\)</span> direction.
+This notation means we used <span class="arithmatex">\(y\)</span> to predict <span class="arithmatex">\(x\)</span>, and due to the backward nature of EDM means it refers to the causal link <span class="arithmatex">\(x \to y\)</span>.</p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../.." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Home
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../chicago/" class="md-footer__link md-footer__link--next" aria-label="Next: Chicago crime/temperature" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Chicago crime/temperature
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.960e086b.min.js"></script>
+      
+        <script src="../../assets/setup-mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+      
+    
+  </body>
+</html>

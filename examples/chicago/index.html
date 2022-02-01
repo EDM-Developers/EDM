@@ -1,0 +1,807 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
+    
+    
+      
+        <title>Chicago crime/temperature - EDM Stata Package</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2b4465f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Alegreya Sans";--md-code-font:""}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/sliders.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/fix-mathjax-font-subscript-bug.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chicago-crimetemperature-example" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="EDM Stata Package" class="md-header__button md-logo" aria-label="EDM Stata Package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EDM Stata Package
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chicago crime/temperature
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="EDM Stata Package" class="md-nav__button md-logo" aria-label="EDM Stata Package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"/></svg>
+
+    </a>
+    EDM Stata Package
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../logistic-map/" class="md-nav__link">
+        Logistic map
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Chicago crime/temperature
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Chicago crime/temperature
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-data" class="md-nav__link">
+    The data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-the-optimal-embedding-dimension" class="md-nav__link">
+    Find the optimal embedding dimension
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergent-cross-mapping" class="md-nav__link">
+    Convergent cross-mapping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-the-s-map-coefficients" class="md-nav__link">
+    Inspecting the S-map coefficients
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          How does it work?
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="How does it work?" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          How does it work?
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../time-delayed-embedding/" class="md-nav__link">
+        Time-delayed embedding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../explore/" class="md-nav__link">
+        The explore subcommand
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../xmap/" class="md-nav__link">
+        The xmap subcommand
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../adding-to-manifold/" class="md-nav__link">
+        Adding variables to manifold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../missing-data/" class="md-nav__link">
+        Missing data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../coprediction/" class="md-nav__link">
+        Coprediction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../gpu/" class="md-nav__link">
+        GPU Acceleration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../automated-workflows/" class="md-nav__link">
+        Automated workflows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        Stata Help File
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-data" class="md-nav__link">
+    The data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-the-optimal-embedding-dimension" class="md-nav__link">
+    Find the optimal embedding dimension
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convergent-cross-mapping" class="md-nav__link">
+    Convergent cross-mapping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inspecting-the-s-map-coefficients" class="md-nav__link">
+    Inspecting the S-map coefficients
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="chicago-crimetemperature-example">Chicago crime/temperature example</h1>
+<p>To demonstrate the usefulness of EDM in estimating the impact of causal variables, we use a real-world dataset that reflects
+daily temperature and crime levels in Chicago, which we make available in the <a href="chicago.dta">chicago.dta</a> file.</p>
+<h2 id="the-data">The data</h2>
+<p>To demonstrate the usefulness of EDM in estimating the impact of causal variables, we use a real-world dataset that reflects
+daily temperature and crime levels in Chicago, which we make available in the <a href="chicago.dta">chicago.dta</a> file.</p>
+<p>First, we load the time series from the <code>chicago.dta</code> file:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.<span class="k"> use</span> chicago,<span class="k"> clear</span>
+</code></pre></div>
+<p>Plotting the data gives:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>.<span class="k"> scatter</span> crime temp
+</code></pre></div>
+<img alt="Scatterplot of Chicago number of crimes against temperature" src="chicago-scatter.svg" /></p>
+<p>A linear correlation of the dataset... </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>.<span class="k"> corr</span> crime temp
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>(obs=<span class="m">4</span>,<span class="m">371</span>)
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>             |    crime     temp
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="o">-------------+------------------</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>       crime |   <span class="m">1.0000</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        temp |   <span class="m">0.4620</span>   <span class="m">1.0000</span>
+</code></pre></div>
+<p>shows a mild correlation, however the causal structure (if any) and its direction is not shown.</p>
+<h2 id="find-the-optimal-embedding-dimension">Find the optimal embedding dimension</h2>
+<p>Now we use <code>edm explore</code> to find the optimal embedding dimension of the <span class="arithmatex">\(\texttt{Temperature}\)</span> time series.
+We check the values of <span class="arithmatex">\(E = 2, \dots 20\)</span>.
+The <code>crossfold(5)</code> option means that, for each <span class="arithmatex">\(E\)</span> value we run 5 sets of predictions, and for each set we take four fifths of the data for training and predict the remaining one fifth.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>. edm explore temp,<span class="k"> e</span>(<span class="m">2</span><span class="o">/</span><span class="m">20</span>) crossfold(<span class="m">5</span>)
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="m">5</span><span class="o">-</span>fold<span class="k"> cross</span><span class="o">-</span>validation progress (<span class="m">5</span><span class="k"> in total</span>)
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>Percent complete: <span class="m">0</span>...<span class="m">10</span>...<span class="m">20</span>...<span class="m">30</span>...<span class="m">40</span>...<span class="m">50</span>...<span class="m">60</span>...<span class="m">70</span>...<span class="m">80</span>...<span class="m">90</span>...
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>Empirical Dynamic Modelling
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Univariate mapping with temp and its lag values
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="o">----------------------------------------------------------------------</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                      <span class="o">---------</span> rho <span class="o">---------</span>  <span class="o">---------</span> MAE <span class="o">---------</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a> Actual E    theta         Mean    Std. Dev.         Mean    Std. Dev.
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="o">----------------------------------------------------------------------</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>        <span class="m">2</span>        <span class="m">1</span>       .<span class="m">89818</span>      .<span class="m">010487</span>       <span class="m">7.1032</span>       .<span class="m">20784</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="m">3</span>        <span class="m">1</span>       .<span class="m">90439</span>     .<span class="m">0080387</span>       <span class="m">6.9064</span>       .<span class="m">27909</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="m">4</span>        <span class="m">1</span>       .<span class="m">91028</span>     .<span class="m">0095908</span>       <span class="m">6.6776</span>       .<span class="m">29265</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="m">5</span>        <span class="m">1</span>       .<span class="m">91548</span>      .<span class="m">010502</span>       <span class="m">6.4794</span>       .<span class="m">37096</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>        <span class="m">6</span>        <span class="m">1</span>       .<span class="m">91879</span>     .<span class="m">0078932</span>       <span class="m">6.4002</span>       .<span class="m">30358</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="m">7</span>        <span class="m">1</span>       .<span class="m">91934</span>     .<span class="m">0071129</span>       <span class="m">6.3696</span>        .<span class="m">2972</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="m">8</span>        <span class="m">1</span>       .<span class="m">91798</span>     .<span class="m">0070104</span>       <span class="m">6.4607</span>       .<span class="m">25364</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>        <span class="m">9</span>        <span class="m">1</span>       .<span class="m">91722</span>     .<span class="m">0071189</span>       <span class="m">6.5027</span>       .<span class="m">27352</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>       <span class="m">10</span>        <span class="m">1</span>       .<span class="m">91762</span>     .<span class="m">0073315</span>       <span class="m">6.5053</span>       .<span class="m">28581</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>       <span class="m">11</span>        <span class="m">1</span>       .<span class="m">91561</span>     .<span class="m">0077983</span>       <span class="m">6.5573</span>       .<span class="m">31192</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>       <span class="m">12</span>        <span class="m">1</span>       .<span class="m">91638</span>      .<span class="m">007973</span>       <span class="m">6.5689</span>       .<span class="m">32428</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>       <span class="m">13</span>        <span class="m">1</span>       .<span class="m">91524</span>     .<span class="m">0083123</span>       <span class="m">6.6081</span>       .<span class="m">31755</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>       <span class="m">14</span>        <span class="m">1</span>       .<span class="m">91485</span>     .<span class="m">0086085</span>       <span class="m">6.6257</span>       .<span class="m">35135</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>       <span class="m">15</span>        <span class="m">1</span>        .<span class="m">9133</span>     .<span class="m">0083516</span>       <span class="m">6.6861</span>       .<span class="m">32796</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>       <span class="m">16</span>        <span class="m">1</span>       .<span class="m">91289</span>     .<span class="m">0092333</span>       <span class="m">6.7024</span>       .<span class="m">35415</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>       <span class="m">17</span>        <span class="m">1</span>       .<span class="m">91183</span>     .<span class="m">0094544</span>       <span class="m">6.7338</span>       .<span class="m">35987</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>       <span class="m">18</span>        <span class="m">1</span>       .<span class="m">91029</span>     .<span class="m">0089739</span>       <span class="m">6.7972</span>       .<span class="m">35502</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>       <span class="m">19</span>        <span class="m">1</span>       .<span class="m">90853</span>      .<span class="m">008125</span>       <span class="m">6.8699</span>       .<span class="m">33429</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>       <span class="m">20</span>        <span class="m">1</span>       .<span class="m">90766</span>     .<span class="m">0091983</span>       <span class="m">6.9047</span>       .<span class="m">31412</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="o">----------------------------------------------------------------------</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>Note: Results from <span class="m">5</span> runs
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>Note: Number of neighbours (k) is<span class="k"> set</span> to between <span class="m">3</span> and <span class="m">21</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>Note: <span class="m">5</span><span class="o">-</span>fold<span class="k"> cross</span> validation results reported
+</code></pre></div>
+<p>From the <code>rho</code> column we can see that the prediction accuracy is maximised when <span class="arithmatex">\(E = 7\)</span>, so we take this as our estimate of the embedding dimension.</p>
+<h2 id="convergent-cross-mapping">Convergent cross-mapping</h2>
+<p>The <code>edm xmap</code> command will run the cross-mapping task, which allows us to ascertain the causal links between the crime and temperature time series.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>.<span class="k"> qui</span> edm xmap temp crime,<span class="k"> e</span>(<span class="m">7</span>) library(<span class="m">10</span>(<span class="m">5</span>)<span class="m">200</span> <span class="m">210</span>(<span class="m">10</span>)<span class="m">1000</span> <span class="m">1020</span>(<span class="m">20</span>)<span class="m">2000</span> <span class="m">2050</span>(
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="o">&gt;</span> <span class="m">50</span>)<span class="m">4350</span> <span class="m">4365</span>) rep(<span class="m">4</span>)
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note<p>This selects a lot of library points, and replicates the analysis some times, so this command may take a minute or two to finish.
+Choosing a machine with more CPU cores or faster cores will help significantly.   </p>
+</p>
+</div>
+<p>Plotting the results gives:</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>.<span class="k"> mat</span> cyx =<span class="k"> e</span>(xmap_2)
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>.<span class="k"> mat</span> cxy =<span class="k"> e</span>(xmap_1)
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>.<span class="k"> svmat</span> cyx, names(chicago_yx)
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>.<span class="k"> svmat</span> cxy, names(chicago_xy)
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>.<span class="k"> label</span> variable chicago_xy3 <span class="s">&quot;Crime|M(Temperature)&quot;</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>.<span class="k"> label</span> variable chicago_yx3 <span class="s">&quot;Temperature|M(Crime)&quot;</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>.<span class="k"> twoway</span> (scatter chicago_xy3 chicago_xy2, mfcolor(%<span class="m">30</span>) mlcolor(%<span class="m">30</span>)) <span class="cs">///</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="o">&gt;</span>     (scatter chicago_yx3 chicago_yx2, mfcolor(%<span class="m">30</span>) mlcolor(%<span class="m">30</span>)) <span class="cs">///</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="o">&gt;</span>     (lpoly chicago_xy3 chicago_xy2)(lpoly chicago_yx3 chicago_yx2), xtitle(L)
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="o">&gt;</span>  ytitle(<span class="s">&quot;{it:{&amp;rho}}&quot;</span>) legend(col(<span class="m">1</span>))
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>.<span class="k"> drop</span> chicago_xy<span class="o">*</span> chicago_yx<span class="o">*</span>
+</code></pre></div>
+<img alt="Convergent cross-mapping plot of accuracy against library size" src="chicago-rho-L.svg" /></p>
+<p>In this plot, we can see that one direction shows a significant increase in accuracy as <span class="arithmatex">\(L\)</span> increases, whereas the other direction is pretty flat.
+The direction which increases the most is the <span class="arithmatex">\(\texttt{Temperature} \mid M(\texttt{Crime})\)</span> direction.
+This notation means we used  <span class="arithmatex">\(\texttt{Crime}\)</span> to predict <span class="arithmatex">\(\texttt{Temperature}\)</span>, and due to the backward nature of EDM means it refers to the causal link <span class="arithmatex">\(\texttt{Temperature} \to M(\texttt{Crime})\)</span>.
+Therefore, we'd conclude that there is a causal link from temperature to crime, though no link in the reverse direction (which would be implausible).  </p>
+<h2 id="inspecting-the-s-map-coefficients">Inspecting the S-map coefficients</h2>
+<p>If we run <code>xmap</code> with the <code>savesmap(beta)</code> option, we can store the fitted S-map coefficients into variable which start with the prefix <code>beta</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>. edm xmap temp crime,<span class="k"> e</span>(<span class="m">7</span>) alg(smap) k(<span class="o">-</span><span class="m">1</span>) savesmap(beta)
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Percent complete: <span class="m">0</span>...<span class="m">10</span>...<span class="m">20</span>...<span class="m">30</span>...<span class="m">40</span>...<span class="m">50</span>...<span class="m">60</span>...<span class="m">70</span>...<span class="m">80</span>...<span class="m">90</span>...
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>Percent complete: <span class="m">0</span>...<span class="m">10</span>...<span class="m">20</span>...<span class="m">30</span>...<span class="m">40</span>...<span class="m">50</span>...<span class="m">60</span>...<span class="m">70</span>...<span class="m">80</span>...<span class="m">90</span>...
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Empirical Dynamic Modelling
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Convergent Cross<span class="o">-</span>mapping result<span class="k"> for</span> variables temp and crime
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="o">--------------------------------------------------------------------------</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                 Mapping    Library size             rho             MAE
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="o">--------------------------------------------------------------------------</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>   crime <span class="o">~</span> crime|M(temp)            <span class="m">4365</span>          .<span class="m">46784</span>          <span class="m">136.93</span> 
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    temp <span class="o">~</span> temp|M(crime)            <span class="m">4365</span>          .<span class="m">54886</span>          <span class="m">14.661</span> 
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="o">--------------------------------------------------------------------------</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>Note: Number of neighbours (k) is<span class="k"> set</span> to <span class="m">4364</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>Note: The embedding dimension E is <span class="m">7</span>
+</code></pre></div>
+<p>For example, the coefficient variables that are created are:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>.<span class="k"> ds</span> beta<span class="o">*</span>, detail
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>Variable      Storage   Display    Value
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    name        <span class="k"> type</span>   <span class="k"> format</span>   <span class="k"> label</span>      Variable<span class="k"> label</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="o">-------------------------------------------------------------------------------</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>beta1_b0_rep1   double  <span class="nx">%10.0g</span>                constant<span class="k"> in</span> temp predicting crime
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>                                                S<span class="o">-</span>map equation (rep <span class="m">1</span>)
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>beta1_b1_rep1   double  <span class="nx">%10.0g</span>                temp predicting crime or
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>                                                crime|M(temp) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>beta1_b2_rep1   double  <span class="nx">%10.0g</span>                l1<span class="m">.</span>temp predicting crime or
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>                                                crime|M(temp) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>beta1_b3_rep1   double  <span class="nx">%10.0g</span>                l2<span class="m">.</span>temp predicting crime or
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>                                                crime|M(temp) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>beta1_b4_rep1   double  <span class="nx">%10.0g</span>                l3<span class="m">.</span>temp predicting crime or
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a>                                                crime|M(temp) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>beta1_b5_rep1   double  <span class="nx">%10.0g</span>                l4<span class="m">.</span>temp predicting crime or
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>                                                crime|M(temp) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>beta1_b6_rep1   double  <span class="nx">%10.0g</span>                l5<span class="m">.</span>temp predicting crime or
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>                                                crime|M(temp) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a>beta1_b7_rep1   double  <span class="nx">%10.0g</span>                l6<span class="m">.</span>temp predicting crime or
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a>                                                crime|M(temp) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a>beta2_b0_rep1   double  <span class="nx">%10.0g</span>                constant<span class="k"> in</span> crime predicting temp
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a>                                                S<span class="o">-</span>map equation (rep <span class="m">1</span>)
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a>beta2_b1_rep1   double  <span class="nx">%10.0g</span>                crime predicting temp or
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a>                                                temp|M(crime) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a>beta2_b2_rep1   double  <span class="nx">%10.0g</span>                l1<span class="m">.</span>crime predicting temp or
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a>                                                temp|M(crime) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a>beta2_b3_rep1   double  <span class="nx">%10.0g</span>                l2<span class="m">.</span>crime predicting temp or
+<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a>                                                temp|M(crime) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a>beta2_b4_rep1   double  <span class="nx">%10.0g</span>                l3<span class="m">.</span>crime predicting temp or
+<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a>                                                temp|M(crime) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a>beta2_b5_rep1   double  <span class="nx">%10.0g</span>                l4<span class="m">.</span>crime predicting temp or
+<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a>                                                temp|M(crime) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a>beta2_b6_rep1   double  <span class="nx">%10.0g</span>                l5<span class="m">.</span>crime predicting temp or
+<a id="__codelineno-7-47" name="__codelineno-7-47" href="#__codelineno-7-47"></a>                                                temp|M(crime) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-48" name="__codelineno-7-48" href="#__codelineno-7-48"></a>                                                (rep <span class="m">1</span>)
+<a id="__codelineno-7-49" name="__codelineno-7-49" href="#__codelineno-7-49"></a>beta2_b7_rep1   double  <span class="nx">%10.0g</span>                l6<span class="m">.</span>crime predicting temp or
+<a id="__codelineno-7-50" name="__codelineno-7-50" href="#__codelineno-7-50"></a>                                                temp|M(crime) S<span class="o">-</span>map coefficient
+<a id="__codelineno-7-51" name="__codelineno-7-51" href="#__codelineno-7-51"></a>                                                (rep <span class="m">1</span>)
+</code></pre></div>
+<p>Plotting them allows us to see the contemporaneous effect of temperature on crime.</p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>.<span class="k"> twoway</span> (kdensity beta1_b1_rep1), xtitle(<span class="s">&quot;Contemporaneous effect of temperatur</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="o">&gt;</span><span class="k"> e on</span> crime<span class="s">&quot;) ytitle(&quot;</span>Density<span class="s">&quot;)</span>
+</code></pre></div>
+<img alt="Contemporaneous effect of temperature on crime" src="chicago-crime1.svg" /></p>
+<p><div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>.<span class="k"> twoway</span> (scatter beta1_b1_rep1 temp, xtitle(<span class="s">&quot;Temperature (Fahrenheit)&quot;</span>) ytitle
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="o">&gt;</span> (<span class="s">&quot;Contemporaneous effect of temperature on crime&quot;</span>) msize(small))(lpoly beta1_
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="o">&gt;</span> b1_rep1 temp), legend(on<span class="k"> order</span>( <span class="m">1</span> <span class="s">&quot;Local coefficient&quot;</span> <span class="m">2</span> <span class="s">&quot;Local polynomial smo</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="o">&gt;</span> othing<span class="s">&quot;))</span>
+</code></pre></div>
+<img alt="Contemporaneous effect of temperature on crime" src="chicago-crime2.svg" /></p>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../logistic-map/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Logistic map" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Logistic map
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../time-delayed-embedding/" class="md-footer__link md-footer__link--next" aria-label="Next: Time-delayed embedding" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Time-delayed embedding
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.960e086b.min.js"></script>
+      
+        <script src="../../assets/setup-mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+      
+    
+  </body>
+</html>

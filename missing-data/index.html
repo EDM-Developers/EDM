@@ -1,0 +1,1029 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
+    
+    
+      
+        <title>Missing data - EDM Stata Package</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2b4465f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Alegreya Sans";--md-code-font:""}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/sliders.css">
+    
+      <link rel="stylesheet" href="../stylesheets/fix-mathjax-font-subscript-bug.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#missing-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="EDM Stata Package" class="md-header__button md-logo" aria-label="EDM Stata Package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EDM Stata Package
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Missing data
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="EDM Stata Package" class="md-nav__button md-logo" aria-label="EDM Stata Package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"/></svg>
+
+    </a>
+    EDM Stata Package
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/logistic-map/" class="md-nav__link">
+        Logistic map
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/chicago/" class="md-nav__link">
+        Chicago crime/temperature
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          How does it work?
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="How does it work?" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          How does it work?
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../time-delayed-embedding/" class="md-nav__link">
+        Time-delayed embedding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explore/" class="md-nav__link">
+        The explore subcommand
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xmap/" class="md-nav__link">
+        The xmap subcommand
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adding-to-manifold/" class="md-nav__link">
+        Adding variables to manifold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Missing data
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Missing data
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-allowmissing-flag" class="md-nav__link">
+    The allowmissing flag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dt-flag" class="md-nav__link">
+    The dt flag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#both-allowmissing-and-dt-flags" class="md-nav__link">
+    Both allowmissing and dt flags
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coprediction/" class="md-nav__link">
+        Coprediction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpu/" class="md-nav__link">
+        GPU Acceleration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automated-workflows/" class="md-nav__link">
+        Automated workflows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        Stata Help File
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-allowmissing-flag" class="md-nav__link">
+    The allowmissing flag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-dt-flag" class="md-nav__link">
+    The dt flag
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#both-allowmissing-and-dt-flags" class="md-nav__link">
+    Both allowmissing and dt flags
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="missing-data">Missing data</h1>
+<p>To explain how the package handles missing data given different options, it is easiest to work by example.</p>
+<p>Let's say we have the following time series and NA represents a missing value:</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(t\)</span></th>
+<th align="center"><span class="arithmatex">\(x_t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1.0</td>
+<td align="center">11</td>
+</tr>
+<tr>
+<td align="center">2.5</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td align="center">3.0</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">4.5</td>
+<td align="center">14</td>
+</tr>
+<tr>
+<td align="center">5.0</td>
+<td align="center">15</td>
+</tr>
+<tr>
+<td align="center">6.0</td>
+<td align="center">16</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>Let's also fix <span class="arithmatex">\(E = 2\)</span>, <span class="arithmatex">\(\tau = 1\)</span> and <span class="arithmatex">\(p = 1\)</span> for these examples.</p>
+<p>Here we have one obviously missing value for <span class="arithmatex">\(x\)</span> at time 3.
+However, there are some hidden missing values also.</p>
+<p>By default, the package will assume that your data was measured at a regular time interval and will insert missing values as necessary to create a regular grid.</p>
+<p>For example, the above time series will be treated as if it were sampled every half time unit.
+So, when creating the <span class="arithmatex">\(E=2\)</span> manifold it will</p>
+<!-- 
+<center>
+
+| $t$ | $t - \frac12$ | $t + \frac12$ | $x_t$ | $x_{t-\frac12}$ | $x_{t+\frac12}$ |
+| :-: | :-----------: | :-----------: | :---: | :-------------: | :-------------: |
+| 1.0 |      0.5      |      1.5      |  11   |       NA        |       NA        |
+| 2.5 |      2.0      |      3.0      |  12   |       NA        |       NA        |
+| 3.0 |      2.5      |      3.5      |  NA   |       12        |       NA        |
+| 4.5 |      4.0      |      5.0      |  14   |       NA        |       15        |
+| 5.0 |      4.5      |      5.5      |  15   |       14        |       NA        |
+| 6.0 |      5.5      |      6.5      |  16   |       NA        |       NA        |
+
+</center> -->
+
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(t\)</span></th>
+<th align="center"><span class="arithmatex">\(x_t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1.0</td>
+<td align="center">11</td>
+</tr>
+<tr>
+<td align="center">1.5</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">2.0</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">2.5</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td align="center">3.0</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">3.5</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">4.0</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">4.5</td>
+<td align="center">14</td>
+</tr>
+<tr>
+<td align="center">5.0</td>
+<td align="center">15</td>
+</tr>
+<tr>
+<td align="center">5.5</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">6.0</td>
+<td align="center">16</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>The manifold of <span class="arithmatex">\(x\)</span> and it's projections <span class="arithmatex">\(y\)</span> will have missing values in them:</p>
+<div class="arithmatex">\[
+  M_x = \left[\begin{array}{cc}
+    11 &amp; \text{NA} \\
+    %\text{NA} &amp; 11 \\
+    %\text{NA} &amp; \text{NA} \\
+    12 &amp; \text{NA} \\
+    \text{NA} &amp; 12 \\
+    %\text{NA} &amp; \text{NA} \\
+    %\text{NA} &amp; \text{NA} \\
+    14 &amp; \text{NA} \\
+    15 &amp; 14 \\
+    %\text{NA} &amp; 15 \\
+    16 &amp; \text{NA} \\
+  \end{array}\right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y = \left[ \begin{array}{c}
+    \text{NA} \\
+    %\text{NA} \\
+    %12 \\
+    \text{NA} \\
+    \text{NA} \\
+    %\text{NA} \\
+    %14 \\
+    15 \\
+    \text{NA} \\
+    %16 \\
+    \text{NA} \\
+  \end{array} \right]
+\]</div>
+<p>We can see that the original missing value, combined with some slightly irregular sampling, created a reconstructed manifold that is mostly missing values!</p>
+<p>By default, the points which contain missing values <em>will not be added to the library or prediction sets</em>.</p>
+<p>For example, if we let the library and prediction sets be as big as possible then we will have:</p>
+<div class="arithmatex">\[
+  \mathscr{L} = \emptyset
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y^{\mathscr{L}} = \emptyset
+\]</div>
+<div class="arithmatex">\[
+  \mathscr{P} = \left[ \begin{array}{cc}
+    15 &amp; 14 \\
+  \end{array} \right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y^{\mathscr{P}} = \left[ \begin{array}{c}
+    \text{NA} \\
+  \end{array} \right]
+\]</div>
+<p>Here we see that the library set is totally empty!
+This is because for a point to be in the library (with default options) it must be fully observed and the corresponding <span class="arithmatex">\(y\)</span> projection must also be observed.
+Similarly, the prediction set is almost empty because (with default options) it must be fully observed.</p>
+<h2 id="the-allowmissing-flag">The <code>allowmissing</code> flag</h2>
+<p>If we set the <code>allowmissing</code> option, then a point is included in the manifold even with some missing values.
+The only caveats to this rule are:</p>
+<ul>
+<li>points which are totally missing will always be discarded,</li>
+<li>we can't have missing targets for points in the library set.</li>
+</ul>
+<p>The largest possible library and prediction sets with <code>allowmissing</code> in this example would be:</p>
+<div class="arithmatex">\[
+  \mathscr{L} = \left[\begin{array}{cc}
+    14 &amp; \text{NA} \\
+  \end{array}\right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y^{\mathscr{L}} = \left[ \begin{array}{c}
+    15 \\
+  \end{array} \right]
+\]</div>
+<div class="arithmatex">\[
+  \mathscr{P} = M_x = \left[\begin{array}{cc}
+    11 &amp; \text{NA} \\
+    %\text{NA} &amp; 11 \\
+    %\text{NA} &amp; \text{NA} \\
+    12 &amp; \text{NA} \\
+    \text{NA} &amp; 12 \\
+    %\text{NA} &amp; \text{NA} \\
+    %\text{NA} &amp; \text{NA} \\
+    14 &amp; \text{NA} \\
+    15 &amp; 14 \\
+    %\text{NA} &amp; 15 \\
+    16 &amp; \text{NA} \\
+  \end{array}\right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y^{\mathscr{P}} = y = \left[ \begin{array}{c}
+    \text{NA} \\
+    %\text{NA} \\
+    %12 \\
+    \text{NA} \\
+    \text{NA} \\
+    %\text{NA} \\
+    %14 \\
+    15 \\
+    \text{NA} \\
+    %16 \\
+    \text{NA} \\
+  \end{array} \right]
+\]</div>
+<p>This discussion is implicitly assuming the <code>algorithm</code> is set to the simplex algorithm.
+When the S-map algorithm is chosen, then we cannot let missing values into the library set <span class="arithmatex">\(\mathscr{L}\)</span>.
+This may change in a future implementation of the S-map algorithm.</p>
+<h2 id="the-dt-flag">The <code>dt</code> flag</h2>
+<p>When we add <code>dt</code>, we tell the package to remove missing observations and to also add the time between the observations into the manifold.</p>
+<p>So, in this example, instead of the observed time series being:</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(t\)</span></th>
+<th align="center"><span class="arithmatex">\(x_t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1.0</td>
+<td align="center">11</td>
+</tr>
+<tr>
+<td align="center">2.5</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td align="center">3.0</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">4.5</td>
+<td align="center">14</td>
+</tr>
+<tr>
+<td align="center">5.0</td>
+<td align="center">15</td>
+</tr>
+<tr>
+<td align="center">6.0</td>
+<td align="center">16</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>the <code>dt</code> basically acts as if the supplied data were:</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(t\)</span></th>
+<th align="center"><span class="arithmatex">\(x_t\)</span></th>
+<th align="center"><span class="arithmatex">\(\mathrm{d}t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1.0</td>
+<td align="center">11</td>
+<td align="center">1.5</td>
+</tr>
+<tr>
+<td align="center">2.5</td>
+<td align="center">12</td>
+<td align="center">2.0</td>
+</tr>
+<tr>
+<td align="center">4.5</td>
+<td align="center">14</td>
+<td align="center">0.5</td>
+</tr>
+<tr>
+<td align="center">5.0</td>
+<td align="center">15</td>
+<td align="center">1.0</td>
+</tr>
+<tr>
+<td align="center">6.0</td>
+<td align="center">16</td>
+<td align="center">NA</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>The resulting manifold and projections are:</p>
+<div class="arithmatex">\[
+   M_x = \left[\begin{array}{cccc}
+    12 &amp; 11 &amp; 2.0 &amp; 1.5 \\
+    14 &amp; 12 &amp; 0.5 &amp; 2.0 \\
+    15 &amp; 14 &amp; 1.0 &amp; 0.5 \\
+  \end{array}\right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y = \left[ \begin{array}{c}
+    14 \\
+    15 \\
+    16 \\
+  \end{array} \right]
+\]</div>
+<p>The largest possible library and prediction sets with <code>dt</code> in this example would be:</p>
+<div class="arithmatex">\[
+   \mathscr{L} = \mathscr{P} = M_x = \left[\begin{array}{cccc}
+    12 &amp; 11 &amp; 2.0 &amp; 1.5 \\
+    14 &amp; 12 &amp; 0.5 &amp; 2.0 \\
+    15 &amp; 14 &amp; 1.0 &amp; 0.5 \\
+  \end{array}\right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y^{\mathscr{L}} = y^{\mathscr{P}} = y = \left[ \begin{array}{c}
+    14 \\
+    15 \\
+    16 \\
+  \end{array} \right]
+\]</div>
+<h2 id="both-allowmissing-and-dt-flags">Both <code>allowmissing</code> and <code>dt</code> flags</h2>
+<p>If we set both flags, we tell the package to allow missing observations and to also add the time between the observations into the manifold.</p>
+<p>So our original time series</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(t\)</span></th>
+<th align="center"><span class="arithmatex">\(x_t\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1.0</td>
+<td align="center">11</td>
+</tr>
+<tr>
+<td align="center">2.5</td>
+<td align="center">12</td>
+</tr>
+<tr>
+<td align="center">3.0</td>
+<td align="center">NA</td>
+</tr>
+<tr>
+<td align="center">4.5</td>
+<td align="center">14</td>
+</tr>
+<tr>
+<td align="center">5.0</td>
+<td align="center">15</td>
+</tr>
+<tr>
+<td align="center">6.0</td>
+<td align="center">16</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
+<p>will generate the manifold</p>
+<div class="arithmatex">\[
+  M_x = \left[\begin{array}{cccc}
+    11 &amp; \text{NA} &amp; 1.5 &amp; \text{NA} \\
+    12 &amp; 11 &amp; 0.5 &amp; 1.5 \\
+    \text{NA} &amp; 12 &amp; 1.5 &amp; 0.5 \\
+    14 &amp; \text{NA} &amp; 0.5 &amp; 1.5 \\
+    15 &amp; 14 &amp; 1.0 &amp; 0.5 \\
+    16 &amp; 15 &amp; \text{NA} &amp; 1.0 \\
+  \end{array}\right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y = \left[ \begin{array}{c}
+    12 \\
+    \text{NA} \\
+    14 \\
+    15 \\
+    16 \\
+    \text{NA}
+  \end{array} \right]
+\]</div>
+<p>and the largest possible library and prediction sets would be</p>
+<div class="arithmatex">\[
+  \mathscr{L} = \left[\begin{array}{cccc}
+    11 &amp; \text{NA} &amp; 1.5 &amp; \text{NA} \\
+    \text{NA} &amp; 12 &amp; 1.5 &amp; 0.5 \\
+    14 &amp; \text{NA} &amp; 0.5 &amp; 1.5 \\
+    15 &amp; 14 &amp; 1.0 &amp; 0.5 \\
+  \end{array}\right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y^{\mathscr{L}} = \left[ \begin{array}{c}
+    12 \\
+    14 \\
+    15 \\
+    16 \\
+  \end{array} \right]
+\]</div>
+<div class="arithmatex">\[
+  \mathscr{P} = M_x = \left[\begin{array}{cccc}
+    11 &amp; \text{NA} &amp; 1.5 &amp; \text{NA} \\
+    12 &amp; 11 &amp; 0.5 &amp; 1.5 \\
+    \text{NA} &amp; 12 &amp; 1.5 &amp; 0.5 \\
+    14 &amp; \text{NA} &amp; 0.5 &amp; 1.5 \\
+    15 &amp; 14 &amp; 1.0 &amp; 0.5 \\
+    16 &amp; 15 &amp; \text{NA} &amp; 1.0 \\
+  \end{array}\right]
+  \underset{\small \text{Matches}}{\Rightarrow}
+  y^{\mathscr{P}} = y = \left[ \begin{array}{c}
+    12 \\
+    \text{NA} \\
+    14 \\
+    15 \\
+    16 \\
+    \text{NA}
+  \end{array} \right]
+\]</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../adding-to-manifold/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Adding variables to manifold" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Adding variables to manifold
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../coprediction/" class="md-footer__link md-footer__link--next" aria-label="Next: Coprediction" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Coprediction
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.960e086b.min.js"></script>
+      
+        <script src="../assets/setup-mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,157 @@
+
+## Setting up the synthetic data
+
+
+<<dd_do: quietly>>
+clear
+discard
+<</dd_do>>
+
+First, we tell Stata that we're working with time series using `tsset`.
+
+```` stata
+<<dd_do>>
+set obs 500
+
+gen t = _n
+tsset t
+<</dd_do>>
+````
+
+This is important, as the `edm` relies on the user to specify which variable corresponds to 'time'.
+
+Next, we can generate the synthetic data which we will use in the causal analysis.
+
+```` stata
+<<dd_do>>
+gen x = 0.2 if _n==1
+gen y = 0.3 if _n==1
+gen z = 0.1 if _n==1
+
+local r_x 3.79
+local r_y 3.79
+local r_z 3.77
+local beta_xy = 0.0
+local beta_yx=0.2
+local beta_zy = 0.5
+local tau = 1
+drawnorm u1 u2
+
+forvalues i=2/`=_N' {
+    qui replace x=l.x *(`r_x' *(1-l.x)-`beta_xy'*l.y) in `i'
+    qui replace y=l.y *(`r_y' *(1-l.y)-`beta_yx'*l`tau'.x) in `i'
+    qui replace z=l.z *(`r_z' *(1-l.z)-`beta_zy'*l`tau'.y) in `i'
+}
+keep in 300/450
+<</dd_do>>
+````
+
+Now we have two time series, $x$ and $y$.
+For example, the first ten joint observations look like: 
+
+```` stata
+<<dd_do>>
+list x y if _n <= 10
+<</dd_do>>
+````
+
+Plotting the two time series together looks like:
+
+<<dd_do: quietly>>
+set seed 12345678
+
+twoway (connected x t)(connected y t) in 1/40, ytitle(value) xtitle(t) legend(position(7) ring(0)) 
+<</dd_do>>
+<<dd_graph: saving("logistic-map.svg") alt("Plot of the logistic map as two time series") replace markdown>>
+
+
+## Find the optimal embedding dimension
+
+Now we use `edm explore` to find the optimal embedding dimension of the $y$ time series.
+We check the values of $E = 2, \dots 10$, and use `rep(50)` to take 50 random subsets of the data to use for training (leaving the other random half for prediction). 
+
+```` stata
+<<dd_do>>
+edm explore y, e(2/10) rep(50)
+mat r= e(explore_result)
+svmat r, names(col)
+twoway (scatter c3 c1)(lpoly c3 c1),xtitle("E") ytitle("{it:{&rho}}") legend(order(1 "{it:{&rho}}" 2 "local polynomial smoothing") col(1) position(8) ring(0))
+drop c*
+<</dd_do>>
+````
+
+From the `rho` column we can see the prediction accuracy decreasing as $E$ increases, so $E=2$ is our best choice for the embedding dimension.
+Plotting the same results:
+
+```` stata
+<<dd_do>>
+mat r= e(explore_result)
+svmat r, names(col)
+twoway (scatter c3 c1)(lpoly c3 c1),xtitle("E") ytitle("{it:{&rho}}") legend(order(1 "{it:{&rho}}" 2 "local polynomial smoothing") col(1) position(8) ring(0))
+drop c*
+<</dd_do>>
+````
+<<dd_graph: saving("rho-E.svg") alt("Plot of prediction accuracy rho for different embedding dimensions E") replace markdown>>
+
+## Assess the level of non-linearity in the time series
+
+Another use of `edm explore` is to check if the observed time series exhibits high levels of non-linearity.
+Here, we use the S-map algorithm and vary $\theta = 0, \dots, 5$, using all of the training set as neighbours (i.e. `k(-1)`).
+
+```` stata
+<<dd_do>>
+edm explore y, e(2) algorithm(smap) theta(0(1)5) k(-1) 
+<</dd_do>>
+````
+
+<<dd_do: quietly>>
+edm explore y, e(2) algorithm(smap) theta(0(0.01)5) k(-1)
+<</dd_do>>
+
+Showing the same `rho`/$\rho$ prediction accuracies as a plot:
+
+```` stata
+<<dd_do>>
+mat r = e(explore_result)
+svmat r, names(col)
+twoway (line c3 c2) , legend(order(1 "{it:{&rho}}") position(5) ring(0)) xtitle("{it:{&theta}}") ytitle("{it:{&rho}}") title("{it:{&rho}}-{it:{&theta}} of variable y")
+drop c*
+<</dd_do>>
+````
+<<dd_graph: saving("rho-theta.svg") alt("Plot of prediction accuracy rho for different theta values") replace markdown>>
+
+As the accuracy climbs as larger for $\theta > 0$ compared to $\theta = 0$, we deduce that the time series is likely the output of a non-linear system.
+This is important, as the theory underlying EDM is specific to non-linear systems.
+
+## Convergent cross-mapping
+
+Finally, now we are satisfied that the time series are non-linear and we have selected $E=2$ as the embedding dimension, we can run _convergent cross-mappping_.
+If the prediction accuracy increases as the library size $L$ increases, then we can say this is evidence of a causal link in that direction. 
+
+```` stata
+<<dd_do>>
+qui edm xmap x y, e(2) rep(10) library(5/150)
+<</dd_do>>
+````
+
+Using these predictions, we can plot the accuracy against the library size: 
+
+```` stata
+<<dd_do>>
+mat c1 = e(xmap_1)
+mat c2 = e(xmap_2)
+svmat c1, names(xy)
+svmat c2, names(yx)
+label variable xy3 "y|M(x)"
+label variable yx3 "x|M(y)"
+twoway (scatter xy3 xy2, mfcolor(%30) mlcolor(%30)) ///
+    (scatter yx3 yx2, mfcolor(%30) mlcolor(%30)) ///
+    (lpoly xy3 xy2)(lpoly yx3 yx2), xtitle(L) ytitle("{it:{&rho}}") legend(col(2))
+<</dd_do>>
+````
+<<dd_graph: saving("rho-L.svg") alt("Convergent cross-mapping plot of accuracy against library size") replace markdown>>
+
+As both plots of the accuracy are significantly increasing as $L$ increases, then we can say there is evidence of both $x \to y$ and $y \to x$ causal links.
+The direction which increases the most is the $x \mid M(y)$ direction.
+This notation means we used $y$ to predict $x$, and due to the backward nature of EDM means it refers to the causal link $x \to y$.
+Therefore, we'd conclude those both directions show causality, though the $x \to y$ link is stronger in the data.  

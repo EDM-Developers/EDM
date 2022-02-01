@@ -1,0 +1,931 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.1.9">
+    
+    
+      
+        <title>Stata Help File - EDM Stata Package</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.2b4465f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.e6a45f82.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,400i,700%7C&display=fallback">
+        <style>:root{--md-text-font:"Alegreya Sans";--md-code-font:""}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/sliders.css">
+    
+      <link rel="stylesheet" href="../stylesheets/fix-mathjax-font-subscript-bug.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#stata-package-help-file" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="EDM Stata Package" class="md-header__button md-logo" aria-label="EDM Stata Package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            EDM Stata Package
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Stata Help File
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="EDM Stata Package" class="md-nav__button md-logo" aria-label="EDM Stata Package" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M476 480H324a36 36 0 0 1-36-36V96h-96v156a36 36 0 0 1-36 36H16a16 16 0 0 1-16-16v-32a16 16 0 0 1 16-16h112V68a36 36 0 0 1 36-36h152a36 36 0 0 1 36 36v348h96V260a36 36 0 0 1 36-36h140a16 16 0 0 1 16 16v32a16 16 0 0 1-16 16H512v156a36 36 0 0 1-36 36z"/></svg>
+
+    </a>
+    EDM Stata Package
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/logistic-map/" class="md-nav__link">
+        Logistic map
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/chicago/" class="md-nav__link">
+        Chicago crime/temperature
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          How does it work?
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="How does it work?" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          How does it work?
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../time-delayed-embedding/" class="md-nav__link">
+        Time-delayed embedding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../explore/" class="md-nav__link">
+        The explore subcommand
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xmap/" class="md-nav__link">
+        The xmap subcommand
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../adding-to-manifold/" class="md-nav__link">
+        Adding variables to manifold
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../missing-data/" class="md-nav__link">
+        Missing data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coprediction/" class="md-nav__link">
+        Coprediction
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gpu/" class="md-nav__link">
+        GPU Acceleration
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automated-workflows/" class="md-nav__link">
+        Automated workflows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Stata Help File
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Stata Help File
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options-for-explore-and-xmap-subcommands" class="md-nav__link">
+    Options for explore and xmap subcommands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options-for-update-subcommand" class="md-nav__link">
+    Options for update subcommand
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updates" class="md-nav__link">
+    Updates
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    Syntax
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#options" class="md-nav__link">
+    Options
+  </a>
+  
+    <nav class="md-nav" aria-label="Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#options-for-explore-and-xmap-subcommands" class="md-nav__link">
+    Options for explore and xmap subcommands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options-for-update-subcommand" class="md-nav__link">
+    Options for update subcommand
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#examples" class="md-nav__link">
+    Examples
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#updates" class="md-nav__link">
+    Updates
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="stata-package-help-file">Stata package help file</h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This page simply reproduces, for convenience, the output of typing <code>help edm</code> into the Stata console.</p>
+</div>
+<p>The command <strong>edm</strong> implements a series of tools that can be used for empirical dynamic
+modeling in Stata. The core algorithm is written in C++ (with a Mata backup) to achieve reasonable execution speed. The
+command keyword is <strong>edm</strong>, and should be immediately followed by a subcommand such as explore or
+xmap. A dataset must be declared as time-series or panel data by the tsset or xtset command prior to
+using the edm command, and time-series operators including l., f., d., and s. can be used (the last
+for seasonal differencing).</p>
+<h2 id="syntax">Syntax</h2>
+<p>The <strong>explore</strong> subcommand follows the syntax below and supports one
+variable for exploration using simplex projection or S-mapping.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>edm explore variable [if exp], [<span class="nf">e</span>(numlist ascending <span class="o">&gt;=</span><span class="m">2</span>)]
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>[tau(integer <span class="m">1</span>)] [theta(numlist ascending)] [k(integer <span class="m">0</span>)] [ALGorithm(string)] [REPlicate(integer <span class="m">0</span>)]
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>[seed(integer <span class="m">0</span>)] [full] [RANDomize] [PREDICTionsave(name)] [COPREDICTionsave(name)] [copredictvar(string)]
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[CROSSfold(integer <span class="m">0</span>)] [CI(integer <span class="m">0</span>)] [EXTRAembed(string)] [ALLOWMISSing] [MISSINGdistance(real <span class="m">0</span>)]
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>[dt] [reldt] [DTWeight(real <span class="m">0</span>)] [DTSave(name)] [DETails] [reportrawe] [strict] [Predictionhorizon(string)]
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>[dot(integer <span class="m">1</span>)] [mata] [gpu] [nthreads(integer <span class="m">0</span>)] [savemanifold(name)] [idw(real <span class="m">0</span>)]
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>[lowmemory]
+</code></pre></div>
+<p>The second subcommand <strong>xmap</strong> performs convergent cross-mapping (CCM). The subcommand
+follows the syntax below and requires two variables to follow immediately after xmap. It shares many
+of the same options with the explore subcommand although there are some differences given the
+different purpose of the analysis.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>edm xmap variables [if exp], [<span class="nf">e</span>(integer <span class="m">2</span>)] [tau(integer <span class="m">1</span>)] [theta(real <span class="m">1</span>)]
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>[Library(numlist)] [RANDomize] [k(integer <span class="m">0</span>)] [ALGorithm(string)] [REPlicate(integer <span class="m">0</span>)] [strict]
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>[DIrection(string)] [seed(integer <span class="m">0</span>)] [PREDICTionsave(name)] [COPREDICTionsave(name)] [copredictvar(string)]
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>[CI(integer <span class="m">0</span>)] [EXTRAembed(string)] [ALLOWMISSing] [MISSINGdistance(real <span class="m">0</span>)] [dt] [reldt]
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>[DTWeight(real <span class="m">0</span>)] [DTSave(name)] [oneway] [DETails] [SAVEsmap(string)] [Predictionhorizon(string)]
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>[dot(integer <span class="m">1</span>)] [mata] [gpu] [nthreads(integer <span class="m">0</span>)] [savemanifold(name)] [idw(real <span class="m">0</span>)]
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>[lowmemory]
+</code></pre></div>
+<p>The third subcommand <strong>update</strong> updates the plugin to its latest version</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>edm<span class="k"> update</span>, [develop] [replace]
+</code></pre></div>
+<p>The fourth subcommand <strong>version</strong> displays the current version number</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>edm<span class="k"> version</span>
+</code></pre></div>
+<h2 id="options">Options</h2>
+<h3 id="options-for-explore-and-xmap-subcommands">Options for explore and xmap subcommands</h3>
+<p><strong>e(numlist ascending)</strong>: This option specifies the number of dimensions E used for the
+main variable in the manifold reconstruction. If a list of numbers is provided, the command will
+compute results for all numbers specified. The xmap subcommand only supports a single integer as the
+option whereas the explore subcommand supports the option as a numlist. The default value for E is
+2, but in theory E can range from 2 to almost half of the total sample size. The actual E used in
+the estimation may be different if additional variables are incorporated. A error message is
+provided if the specified value is out of range. Missing data will limit the maximum E under the
+default deletion method.</p>
+<p><strong>tau(integer)</strong>: The tau (or τ) option allows researchers to specify the ‘time delay’,
+which essentially sorts the data by the multiple τ. This is done by specifying lagged embeddings
+that take the form: t,t-1τ,…,t-(E-1)τ, where the default is tau(1) (i.e., typical lags). However, if
+tau(2) is set then every-other t is used to reconstruct the attractor and make predictions—this does
+not halve the observed sample size because both odd and even t would be used to construct the set of
+embedding vectors for analysis. This option is helpful when data are oversampled (i.e., spaced too
+closely in time) and therefore very little new information about a dynamic system is added at each
+occasion. However, the tau() setting is also useful if different dynamics occur at different times
+scales, and can be chosen to reflect a researcher’s theory-driven interest in a specific time-scale
+(e.g., daily instead of hourly). Researchers can evaluate whether τ&gt;1 is required by checking for
+large autocorrelations in the observed data (e.g., using Stata’s corrgram function). Of course, such
+a linear measure of association may not work well in nonlinear systems and thus researchers can also
+check performance by examining ρ and MAE at different values of τ.</p>
+<p><strong>theta(numlist ascending)</strong>: Theta (or θ) is the distance weighting parameter for the
+local neighbours in the manifold. It is used to detect the nonlinearity of the system in the explore
+subcommand for S-mapping. Of course, as noted above, for simplex projection and CCM a weight of
+<code>theta(1)</code> is applied to neighbours based on their distance, which is reflected in the fact that the
+default value of θ is 1. However, this can be altered even for simplex projection or CCM (two cases
+that we do not cover here). Particularly, values for S-mapping to test for improved predictions as
+they become more local may include the following command: <code>theta(0 .00001 .0001 .001 .005 .01 .05 .1 .5 1 1.5 2 3 4 6 8 10)</code>.</p>
+<p><strong>k(integer)</strong>: This option specifies the number of neighbours used for prediction. When
+set to 1, only the nearest neighbour is used, but as k increases the next-closest nearest neighbours
+are included for making predictions. In the case that k is set 0, the number of neighbours used is
+calculated automatically (typically as k = E + 1 to form a simplex around a target), which is the
+default value. When k &lt; 0 (e.g., <code>k(-1)</code>), all possible points in the prediction set are used (i.e.,
+all points in the library are used to reconstruct the manifold and predict target vectors). This
+latter setting is useful and typically recommended for S-mapping because it allows all points in the
+library to be used for predictions with the weightings in theta. However, with large datasets this
+may be computationally burdensome and therefore <code>k(100)</code> or perhaps <code>k(500)</code> may be preferred if T or NT
+is large.</p>
+<p><strong>ALGorithm(string)</strong>: This option specifies the algorithm used for prediction. If not
+specified, simplex projection (a locally weighted average) is used. Valid options include simplex
+and smap, the latter of which is a sequential locally weighted global linear mapping (or S-map as
+noted previously). In the case of the xmap subcommand where two variables predict each other, the
+algorithm(smap) invokes something analogous to a distributed lag model with E + 1 predictors
+(including a constant term c) and, thus, E + 1 locally-weighted coefficients for each predicted
+observation/target vector—because each predicted observation has its own type of regression done
+with k neighbours as rows and E + 1 coefficients as columns. As noted below, in this case special
+options are available to save these coefficients for post-processing but, again, it is not actually
+a regression model and instead should be seen as a manifold.</p>
+<p><strong>RANDomize</strong>: When splitting the observations into library and prediction sets, by default
+the oldest observations go into the library set and the newest observations to the prediction set.
+Though if the randomize option is specified, the data is allocated into the two sets in a random
+fashion. If the replicate option is specified, then this randomization is enabled automatically.</p>
+<p><strong>REPlicate(integer)</strong>: The explore subcommand uses a random 50/50 split for simplex
+projection and S-maps, whereas the xmap subcommand selects the observations randomly for library
+construction if the size of the library L is smaller than the size of all available observations. In
+these cases, results may be different in each run because the embedding vectors (i.e., the
+E-dimensional points) used to reconstruct a manifold are chosen at random. The replicate option
+takes advantages of this to allow repeating the randomization process and calculating results each
+time. This is akin to a nonparametric bootstrap without replacement, and is commonly used for
+inference using confidence intervals in EDM (Tsonis et al., 2015; van Nes et al., 2015; Ye et al.,
+2015b). When replicate is specified, such as replicate(50), mean values and the standard deviations
+of the results are reported across the 50 runs by default. As we note below, it is possible to save
+all estimates for post-processing using typical Stata commands such as svmat, allowing the graphing
+of results or finding percentile-based with the pctile command.</p>
+<p><strong>PREDICTionsave(variable)</strong>: This option allows you to save the edm predictions
+as a variable, which could be useful for plotting and diagnosis.</p>
+<p><strong>COPREDICTionsave(variable)</strong>: This option allows you to save the copredictions
+as a variable. You must specify the copredictvar(variables) options for this to work.</p>
+<p><strong>copredictvar(variable)</strong>: This option specifies the variable used for coprediction.
+A second prediction is run for each configuration of E, library, etc., using the same library set
+but with a prediction set built from the lagged embedding of this variable.</p>
+<p><strong>Predictionhorizon(integer)</strong>: This option adjusts the default number of observations ahead
+which we predict. By default, the explore mode predict τ observations ahead and the xmap mode uses p(0).
+This parameter can be negative.</p>
+<p><strong>DETails</strong>: By default, only mean values and standard deviations are reported when the
+replicate option is specified. The details option overrides this behaviour by providing results for
+each individual run. Irrespective of using this option, all results can be saved for
+post-processing.</p>
+<p><strong>CI(integer)</strong>: When used with replicate() or crossfold(), this option reports the
+confidence interval for the mean of the estimates (MAE and/or ρ), as well as the percentiles of
+their distribution. The first row of output labelled “Est. mean CI” reports the estimated confidence
+interval of the mean ρ, assuming that ρ has a normal distribution—estimated as the corrected sample
+standard deviation (with N-1 in the denominator) divided by the squared root of the number of
+replications. The reported range can be used to compare mean ρ across different (hyper) parameter
+values (e.g., different E, θ, or L) using the same datasets as if the sample was the entire
+population (such that uncertainty is reduced to 0 when the number of replications →∞). These
+intervals can be used to test which (hyper) parameter values best describe a sample, as might be
+typically used when using crossfold validation methods. The row labelled with “Pc (Est.)” follows
+the same normality assumption and reports the estimated percentile values based on the corrected
+sample standard deviation of the replicated estimates. The row labelled “Pc (Obs.)” reports the
+actual observed percentile values from the replicated estimates. In both of these latter cases the
+percentile values offer alternative metrics for comparisons across distributions, which would be
+more useful for testing typical hypotheses about population differences in estimates across
+different (hyper) parameter values (e.g., different E, θ, or L), such as testing whether a dynamical
+system appears to be nonlinear in a population (i.e., testing whether ρ is maximized when θ &gt; 0).
+The number specified within the ci() bracket determines the confidence level and the locations of
+the percentile cut-offs. For example, ci(90) instructs edm to return 90% CI as well as the cut-off
+values for the 5th and 95th percentile values—because ρ and MAE values cannot or are not expected to
+take on negative values, we typically prefer one-tailed hypothesis tests and therefore would use
+ci(90) to get a one-tailed 95% interval. These estimated ranges are also included in the e() return
+list as a series of scalars with names starting with “ub” for upper bound and “lb” for lower bound
+values of the CIs. These return values can be used for further post-processing.</p>
+<p><strong>seed(integer)</strong>: This option specifies the seed used for the random number. In some
+special cases users may wish to use this in order to keep library and prediction sets the same
+across simplex projection and S-mapping with a single variable, or across multiple CCM runs with
+different variables. Note: if <code>set rng</code> has been used to change Stata's random number generation
+algorithm, then edm will temporarily change it the default 64 bit Mersenne twister internally.</p>
+<p><strong>strict</strong>: When this option is specified, the computation will fail if the requested
+number of neighboring observations is not present. By default, if not all of the request neighbors
+are available, the computation will just continue using as many as possible.</p>
+<p><strong>ALLOWMISSing</strong> This option allows observations with missing values to be used in the
+manifold. Vectors with at least one non-missing values will be used in the manifold construction.
+Distance computations are adapted to allow missing values when this option is specified.</p>
+<p><strong>MISSINGdistance(real)</strong>: This option allows users to specify the assumed distance
+between missing values and any values (including missing) when estimating the Euclidean distance of
+the vector. This enables computations with missing values. The option implies allowmissing. By
+default, the distance is set to the expected distance of two random draws in a normal distribution,
+which equals to 2/sqrt(pi) * standard deviation of the mapping variable.</p>
+<p><strong>EXTRAembed(variables)</strong>: This option allows incorporating additional variables into the
+embedding (multivariate embedding), e.g. <code>extra(z l.z)</code>. Time series lists are unabbreviated here,
+e.g. <code>extra(L(1/3).z)</code> will be equivalent to <code>extra(L1.z L2.z L3.z)</code>. Normally, lagged versions of the
+extra variables are not included in the embedding, however the syntax <code>extra(z(e))</code> includes E lags
+of z in the embedding.</p>
+<p><strong>dt</strong>: This option allows automatic inclusion of the timestamp differencing in the
+embedding. There will be E dt variables included for an embedding with E dimensions. By default,
+the weights used for these additional variables equal to the standard deviation of the main
+mapping variable divided by the standard deviation of the time difference. This can be overridden by
+the <code>dtweight()</code> option. <code>dt</code> option will be ignored when running with data with no sampling
+variation in the time lags. The first dt variable embeds the time of the between the most recent
+observation and the time of the corresponding target/predictand.</p>
+<p><strong>reldt</strong>: This option, to be read as 'relative dt', is like the 'dt' option above in
+that it includes E extra variables for an embedding with E dimensions. However the timestamp
+differences added are not the time between the corresponding observations, but the time of the
+target/predictand minus the time of the lagged observations.</p>
+<p><strong>DTWeight(real)</strong>: This option specifies the weight used for the timestamp differencing
+variable.</p>
+<p><strong>DTSave(variable)</strong>: This option allows users to save the internally generated timestamp
+differencing variable.</p>
+<p><strong>nthreads(integer)</strong>: The number of threads the C++ plugin will use for parallel
+computations. The default is the number of cores available on the host computer.</p>
+<p><strong>idw(real)</strong>: This parameter is used when xtset indicates that the current dataset
+is panel data. Then, idw specifies a penalty that is added to the distances between points in the
+manifold which correspond to observations from different panels. By default idw is 0, so the data
+from all panels is mixed together and treatly equally. If idw(-1) is set (or any other negative
+value), then the weight is treated as 'infinity', so neighbours will never be selected which cross
+the boundaries between panels. Setting idw(-1) with k(-1) means we may use a different number of
+neighbors for different predictions (i.e. if the panels are unbalanced).</p>
+<p><strong>lowmemory</strong>: It is possible that RAM may be depleted while running edm on large datasets
+with large values of E. The lowmemory flag directs the plugin to try to save as much space as possible
+by more efficiently using memory, though for small datasets this will likely slow down the computations
+by a small but noticeable amount.</p>
+<p>Besides the shared parameters, edm explore supports the following extra options:</p>
+<p><strong>CROSSfold(integer)</strong>: This option asks the program to run a cross-fold validation of the
+predicted variables. crossfold(5) indicates a 5-fold cross validation. Note that this cannot be used
+together with replicate. This option is only available with the <code>explore</code> subcommand.</p>
+<p><strong>full</strong>: When this option is specified, the explore command will use all possible
+observations in the manifold construction instead of the default 50/50 split. This is effectively
+the same as leave-one-out cross-validation as the observation itself is not used for the prediction.</p>
+<p><strong>reportrawe</strong>: By default, the program reports the actual E used in the manifold. With
+this option, the program will only report the number of dimensions constructed from the main
+variable.</p>
+<p><strong>Library(numlist ascending)</strong>: This option specifies the total library size L used for
+the manifold reconstruction. Varying the library size is used to estimate the convergence property
+of the cross-mapping, with a minimum value Lmin = E + 2 and the maximum equal to the total number of
+observations minus sufficient lags (e.g., in the time-series case without missing data this is Lmax
+= T + 1 – E). An error message is given if the L value is beyond the allowed range. To assess the
+rate of convergence (i.e., the rate at which ρ increases as L grows), the full range of library
+sizes at small values of L can be used, such as if E = 2 and T = 100, with the setting then perhaps
+being <code>library(4(1)25 30(5)50 54(15)99)</code>. This option is only available with the <code>xmap</code> subcommand.</p>
+<p><strong>SAVEsmap(string)</strong>: This option allows smap coefficients to be stored in variables with
+a specified prefix. For example, specifying <code>edm xmap x y, algorithm(smap) savesmap(beta) k(-1)</code> will
+create a set of new variables such as beta1_b0_rep1. The string prefix (e.g., 'beta') must not be
+shared with any variables in the dataset, and the option is only valid if the algorithm(smap) is
+specified. In terms of the saved variables such as beta1_b0_rep1, the first number immediately after
+the prefix ‘beta’ is 1 or 2 and indicates which of the two listed variables is treated as the
+dependent variable in the cross-mapping (i.e., the direction of the mapping). For the <code>edm xmap x y</code>
+case, variables starting with <code>beta1_</code> contain coefficients derived from the manifold M_X created
+using the lags of the first variable ‘x’ to predict Y, or Y|M_X. This set of variables therefore
+store the coefficients related to ‘x’ as an outcome rather than a predictor in CCM. Keep in mind
+that any Y→X effect associated with the <code>beta1_</code> prefix is shown as Y|M_X, because the outcome is used
+to cross-map the predictor, and thus the reported coefficients will be scaled in the opposite
+direction of a typical regression (because in CCM the outcome variable predicts the cause). To get
+more familiar regression coefficients (which will be locally weighted), variables starting with
+beta2_ store the coefficients estimated in the other direction, where the second listed variable ‘y’
+is used for the manifold reconstruction M_Y for the mapping X|M_Y in the “edm xmap x y” case, testing
+the opposite X→Y effect in CCM, but with reported S-map coefficients that map to a Y→X regression.
+We appreciate that this may be unintuitive, but because CCM causation is tested by predicting the
+causal variable with the outcome, to get more familiar regression coefficients requires reversing
+CCM’s causal direction to a more typical predictor→outcome regression logic. This can be clarified
+by reverting to the conditional notation such as X|M_Y, which in CCM implies a left-to-right X→Y
+effect, but for the S-map coefficients will be scaled as a locally-weighted regression in the
+opposite direction Y→X. Moving on, following the 1 and 2 is the letter b and a number. The numerical
+labeling scheme generally follows the order of the lag for the main variable and then the order of
+the extra variables introduced in the case of multivariate embedding. b0 is a special case which
+records the coefficient of the constant term in the regression. The final term rep1 indicates the
+coefficients are from the first round of replication (if the replicate() option is not used then
+there is only one). Finally, the coefficients are saved to match the observation t in the dataset
+that is being predicted, which allows plotting each of the E estimated coefficients against time
+and/or the values of the variable being predicted. The variables are also automatically labelled for
+clarity. This option is only available with the <code>xmap</code> subcommand.</p>
+<p><strong>DIrection(string)</strong>: This option allows users to control whether the cross mapping is
+calculated bidirectionally or unidirectionally, the latter of which reduces computation times if
+bidirectional mappings are not required. Valid options include “oneway” and “both”, the latter of
+which is the default and computes both possible cross-mappings. When oneway is chosen, the first
+variable listed after the xmap subcommand is treated as the potential dependent variable following
+the conventions in the regression syntax of Stata such as the‘reg’ command, so <code>edm xmap x y, direction(oneway)</code> produces the cross-mapping Y|M_X, which pertains to a Y→X effect. This is
+consistent with the beta1_ coefficients from the previous savesmap(beta) option. On this point, the
+direction(oneway) option may be especially useful when an initial “edm xmap x y”procedure shows
+convergence only for a cross-mapping Y|M_X, which pertains to a Y→X effect. To save time with large
+datasets, any follow-up analyses with the algorithm(smap) option can then be conducted with <code>edm xmap x y, algorithm(smap) savesmap(beta) direction(oneway)</code>.  To make this easier there is also a
+simplified oneway option that implies direction(oneway). This option is only available with the
+<code>xmap</code> subcommand.</p>
+<p><strong>oneway</strong>: This option is equivalent to <code>direction(oneway)</code></p>
+<h3 id="options-for-update-subcommand">Options for update subcommand</h3>
+<p>The update subcommand supports the following options:</p>
+<p><strong>develop</strong>: This option updates the command to its latest development version. The
+development version usually contains more features but may be less tested compared with the older
+version distributed on SSC.</p>
+<p><strong>replace</strong>: This option specifies whether you allow the update to override your local ado
+files.</p>
+<h2 id="examples">Examples</h2>
+<p>Chicago crime dataset example (included in the auxiliary file)</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">use</span> chicago,clear
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>edm explore temp,<span class="k"> e</span>(<span class="m">2</span><span class="o">/</span><span class="m">30</span>)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>edm xmap temp crime
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>edm xmap temp crime, alg(smap) savesmap(beta)<span class="k"> e</span>(<span class="m">6</span>) k(<span class="o">-</span><span class="m">1</span>)
+</code></pre></div>
+<h2 id="updates">Updates</h2>
+<p>To install the stable version or upgrade directly through Stata:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>edm<span class="k"> update</span>,<span class="k"> replace</span>
+</code></pre></div>
+<p>To install the development version directly through Stata:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>edm<span class="k"> update</span>, develop<span class="k"> replace</span>
+</code></pre></div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../automated-workflows/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Automated workflows" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Automated workflows
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.22074ed6.min.js"}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.960e086b.min.js"></script>
+      
+        <script src="../assets/setup-mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+      
+    
+  </body>
+</html>

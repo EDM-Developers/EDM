@@ -1,0 +1,9 @@
+.slider-container {
+  height: 20px;
+  display: flex;
+  align-items: center
+}
+
+.slider-container span {
+  margin-left: 10px;
+}

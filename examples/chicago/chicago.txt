@@ -1,0 +1,124 @@
+# Chicago crime/temperature example
+
+To demonstrate the usefulness of EDM in estimating the impact of causal variables, we use a real-world dataset that reflects
+daily temperature and crime levels in Chicago, which we make available in the [chicago.dta](chicago.dta) file.
+
+## The data
+
+<<dd_do: quietly>>
+clear
+discard
+<</dd_do>>
+
+First, we load the time series from the `chicago.dta` file:
+
+```` stata
+<<dd_do>>
+use chicago, clear
+<</dd_do>>
+````
+
+Plotting the data gives:
+
+```` stata
+<<dd_do>>
+scatter crime temp
+<</dd_do>>
+````
+<<dd_graph: saving("chicago-scatter.svg") alt("Scatterplot of Chicago number of crimes against temperature") replace markdown>>
+
+A linear correlation of the dataset... 
+
+```` stata
+<<dd_do>>
+corr crime temp
+<</dd_do>>
+````
+
+shows a mild correlation, however the causal structure (if any) and its direction is not shown.
+
+## Find the optimal embedding dimension
+
+Now we use `edm explore` to find the optimal embedding dimension of the $\texttt{Temperature}$ time series.
+We check the values of $E = 2, \dots 20$.
+The `crossfold(5)` option means that, for each $E$ value we run 5 sets of predictions, and for each set we take four fifths of the data for training and predict the remaining one fifth.
+
+```` stata
+<<dd_do>>
+edm explore temp, e(2/20) crossfold(5)
+<</dd_do>>
+````
+
+From the `rho` column we can see that the prediction accuracy is maximised when $E = 7$, so we take this as our estimate of the embedding dimension.
+
+## Convergent cross-mapping
+
+The `edm xmap` command will run the cross-mapping task, which allows us to ascertain the causal links between the crime and temperature time series.
+
+```` stata
+<<dd_do>>
+qui edm xmap temp crime, e(7) library(10(5)200 210(10)1000 1020(20)2000 2050(50)4350 4365) rep(4)
+<</dd_do>>
+````
+
+!!! note
+        This selects a lot of library points, and replicates the analysis some times, so this command may take a minute or two to finish.
+        Choosing a machine with more CPU cores or faster cores will help significantly.   
+
+Plotting the results gives:
+
+
+```` stata
+<<dd_do>>
+mat cyx = e(xmap_2)
+mat cxy = e(xmap_1)
+svmat cyx, names(chicago_yx)
+svmat cxy, names(chicago_xy)
+label variable chicago_xy3 "Crime|M(Temperature)"
+label variable chicago_yx3 "Temperature|M(Crime)"
+twoway (scatter chicago_xy3 chicago_xy2, mfcolor(%30) mlcolor(%30)) ///
+    (scatter chicago_yx3 chicago_yx2, mfcolor(%30) mlcolor(%30)) ///
+    (lpoly chicago_xy3 chicago_xy2)(lpoly chicago_yx3 chicago_yx2), xtitle(L) ytitle("{it:{&rho}}") legend(col(1))
+drop chicago_xy* chicago_yx*
+<</dd_do>>
+````
+<<dd_graph: saving("chicago-rho-L.svg") alt("Convergent cross-mapping plot of accuracy against library size") replace markdown>>
+
+In this plot, we can see that one direction shows a significant increase in accuracy as $L$ increases, whereas the other direction is pretty flat.
+The direction which increases the most is the $\texttt{Temperature} \mid M(\texttt{Crime})$ direction.
+This notation means we used  $\texttt{Crime}$ to predict $\texttt{Temperature}$, and due to the backward nature of EDM means it refers to the causal link $\texttt{Temperature} \to M(\texttt{Crime})$.
+Therefore, we'd conclude that there is a causal link from temperature to crime, though no link in the reverse direction (which would be implausible).  
+
+## Inspecting the S-map coefficients 
+
+If we run `xmap` with the `savesmap(beta)` option, we can store the fitted S-map coefficients into variable which start with the prefix `beta`.
+
+```` stata
+<<dd_do>>
+edm xmap temp crime, e(7) alg(smap) k(-1) savesmap(beta)
+<</dd_do>>
+````
+
+For example, the coefficient variables that are created are:
+
+```` stata
+<<dd_do>>
+ds beta*, detail
+<</dd_do>>
+````
+
+Plotting them allows us to see the contemporaneous effect of temperature on crime.
+
+```` stata
+<<dd_do>>
+twoway (kdensity beta1_b1_rep1), xtitle("Contemporaneous effect of temperature on crime") ytitle("Density")
+<</dd_do>>
+````
+<<dd_graph: saving("chicago-crime1.svg") alt("Contemporaneous effect of temperature on crime") replace markdown>>
+
+```` stata
+<<dd_do>>
+twoway (scatter beta1_b1_rep1 temp, xtitle("Temperature (Fahrenheit)") ytitle("Contemporaneous effect of temperature on crime") msize(small))(lpoly beta1_b1_rep1 temp), legend(on order( 1 "Local coefficient" 2 "Local polynomial smoothing"))
+<</dd_do>>
+````
+<<dd_graph: saving("chicago-crime2.svg") alt("Contemporaneous effect of temperature on crime") replace markdown>>
